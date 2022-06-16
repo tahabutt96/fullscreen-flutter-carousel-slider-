@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title> Using JavaScript to Change the Source of an Image </title>
+    </head>   
+    <body>
+     
+<style>
+img#img {
+    max-width: 100%;
+    max-height: 100%;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+</style>
+
+<script>
+function changeImage()
+{
+    var img = document.getElementById("img");
+    img.src = images[x];
+    x++;
+
+    if(x >= images.length){
+        x = 0;
+    } 
+
+    fadeImg(img, 100, false);
+    setTimeout("changeImage()", 15000);
+}
+
+function fadeImg(el, val, fade){
+    if(fade === true){
+        val--;
+    }else{
+        val ++;
+    }
+
+    if(val > 0 && val < 100){
+        el.style.opacity = val / 100;
+        setTimeout(function(){fadeImg(el, val, fade);}, 10);
+    }
+}
+
+var images = [],
+x = 0;
+
+images[0] = "MS2_1.jpg";
+images[1] = "MS2_2.jpg";
+images[2] = "MS2_3.jpg";
+images[3] = "MS2_4.jpg";
+images[4] = "MS2_5.jpg";
+images[5] = "MS2_6.jpg";
+
+setTimeout("changeImage()", 5000);
+
+</script>
+	<div>
+        <img id="img" src="test.jpg" alt="">
+	</div>
+    </body>
+ 
+</html>
+
